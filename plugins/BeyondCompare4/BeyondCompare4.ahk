@@ -10,7 +10,9 @@
     vim.comment("<BeyondCompare4_End>", "跳转到文件结尾")
     vim.comment("<BeyondCompare4_Search>", "搜索内容")
     vim.comment("<BeyondCompare4_CopyToLeft>", "复制到左侧")
+    vim.comment("<BeyondCompare4_CopyToLeftSection>", "复制行到左侧")
     vim.comment("<BeyondCompare4_CopyToRight>", "复制到右侧")
+    vim.comment("<BeyondCompare4_CopyToRightSection>", "复制行到左侧")
 
     vim.SetWin("BeyondCompare4", "TViewForm")
 
@@ -21,20 +23,33 @@
 
     ; normal模式
     vim.mode("normal", "BeyondCompare4")
-
     vim.map("i", "<BeyondCompare4_InsertMode>", "BeyondCompare4")
-
     vim.map("<esc>", "<Pass>", "BeyondCompare4")
     
+    vim.map("gg", "<BeyondCompare4_Home>", "BeyondCompare4")
+    vim.map("G", "<BeyondCompare4_End>", "BeyondCompare4")
+    vim.map("/", "<BeyondCompare4_Search>", "BeyondCompare4")
+    
+    ; 左手
+    vim.map("d", "<BeyondCompare4_NextDiffSection>", "BeyondCompare4")
+    vim.map("e", "<BeyondCompare4_PrevDiffSection>", "BeyondCompare4")
+    vim.map("D", "<BeyondCompare4_NextDiff>", "BeyondCompare4")
+    vim.map("E", "<BeyondCompare4_PrevDiff>", "BeyondCompare4")
+    vim.map("s", "<BeyondCompare4_CopyToLeft>", "BeyondCompare4")
+    vim.map("f", "<BeyondCompare4_CopyToRight>", "BeyondCompare4")
+    vim.map("S", "<BeyondCompare4_CopyToLeftSection>", "BeyondCompare4")
+    vim.map("F", "<BeyondCompare4_CopyToRightSection>", "BeyondCompare4")
+    
+    ; 右手
     vim.map("j", "<BeyondCompare4_NextDiffSection>", "BeyondCompare4")
     vim.map("k", "<BeyondCompare4_PrevDiffSection>", "BeyondCompare4")
     vim.map("J", "<BeyondCompare4_NextDiff>", "BeyondCompare4")
     vim.map("K", "<BeyondCompare4_PrevDiff>", "BeyondCompare4")
-    vim.map("gg", "<BeyondCompare4_Home>", "BeyondCompare4")
-    vim.map("G", "<BeyondCompare4_End>", "BeyondCompare4")
-    vim.map("/", "<BeyondCompare4_Search>", "BeyondCompare4")
     vim.map("h", "<BeyondCompare4_CopyToLeft>", "BeyondCompare4")
     vim.map("l", "<BeyondCompare4_CopyToRight>", "BeyondCompare4")
+    vim.map("H", "<BeyondCompare4_CopyToLeftSection>", "BeyondCompare4")
+    vim.map("L", "<BeyondCompare4_CopyToRightSection>", "BeyondCompare4")
+
 return
 
 ; 对符合条件的控件使用insert模式，而不是normal模式
@@ -84,10 +99,18 @@ return
     Send, ^f
 return
 
-<BeyondCompare4_CopyToLeft>:
+<BeyondCompare4_CopyToRightSection>:
     Send, ^+r
 return
 
 <BeyondCompare4_CopyToRight>:
     Send, ^r
+return
+
+<BeyondCompare4_CopyToLeftSection>:
+    Send, ^+l
+return
+
+<BeyondCompare4_CopyToLeft>:
+    Send, ^l
 return
