@@ -194,7 +194,7 @@
     ;~ vim.map("zr", "<cm_Restore>", "TTOTAL_CMD")
     ;~ vim.map("zv", "<cm_VerticalPanels>", "TTOTAL_CMD")
     ;~ vim.map("Z", "<TC_ToggleMenu>", "TTOTAL_CMD")
-	vim.map(".z", "<TC_Toggle_50_100Percent>", "TTOTAL_CMD")
+	vim.map(".z", "<cm_50Percent>", "TTOTAL_CMD")
     vim.map(".h", "<TC_Toggle_50_100Percent_V>", "TTOTAL_CMD")
     vim.map(".i", "<TC_WinMaxLeft>", "TTOTAL_CMD")
     vim.map(".o", "<TC_WinMaxRight>", "TTOTAL_CMD")
