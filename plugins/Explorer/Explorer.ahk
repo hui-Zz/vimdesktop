@@ -35,6 +35,10 @@ Explorer:
 
     vim.map("i", "<Explorer_InsertMode>", "Explorer")
     
+    vim.map("d", "<down>", "Explorer")
+    vim.map("e", "<up>", "Explorer")
+    vim.map("s", "<Explorer_GotoParent>", "Explorer")
+    vim.map("f", "<Explorer_Enter>", "Explorer")
     vim.map("j", "<down>", "Explorer")
     vim.map("k", "<up>", "Explorer")
     vim.map("h", "<Explorer_GotoParent>", "Explorer")
@@ -46,14 +50,10 @@ Explorer:
     vim.map("N", "<Explorer_ListViewD>", "Explorer")
     vim.map("r", "<Explorer_Rename>", "Explorer")
 
+    vim.map("w", "<backspace>", "Explorer")
     vim.map("H", "<backspace>", "Explorer")
-    vim.map("<c-h>", "<left>", "Explorer")
-    vim.map("<c-l>", "<right>", "Explorer")
-    vim.map("<c-j>", "<down>", "Explorer")
-    vim.map("<c-k>", "<up>", "Explorer")
     vim.map("gg", "<home>", "Explorer")
     vim.map("G", "<end>", "Explorer")
-    vim.map("f", "<Explorer_GotoTCInNewTab>", "Explorer")
     vim.map("F", "<Explorer_GotoTC>", "Explorer")
 
     vim.BeforeActionDo("Explorer_ForceInsertMode", "Explorer")

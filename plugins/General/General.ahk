@@ -20,6 +20,8 @@
     vim.SetAction("<WindowMin>", "最小化窗口")
     vim.SetAction("<WindowRestore>", "还原当前窗口")
     vim.SetAction("<FullScreen>", "全屏当前程序")
+    vim.SetAction("<Goto_Home>", "跳转到开头")
+    vim.SetAction("<Goto_End>", "跳转到结尾")
     vim.SetAction("<NextTab>", "下一个标签")
     vim.SetAction("<PrevTab>", "前一个标签")
     vim.SetAction("<CloseTab>", "关闭当前标签")
@@ -72,7 +74,10 @@
     vim.map("7", "<7>", "General")
     vim.map("8", "<8>", "General")
     vim.map("9", "<9>", "General")
-    vim.map("k", "<up>", "General")
+    vim.map("d", "<down>", "General")
+    vim.map("e", "<up>", "General")
+    vim.map("s", "<left>", "General")
+    vim.map("f", "<right>", "General")
     vim.map("j", "<down>", "General")
     vim.map("k", "<up>", "General")
     vim.map("h", "<left>", "General")
@@ -88,6 +93,8 @@
     vim.map("zr", "<WindowRestore>", "General")
     vim.map("t", "<NewTab>", "General")
     vim.map("x", "<CloseTab>", "General")
+    vim.map("G", "<Goto_End>", "General")
+    vim.map("gg", "<Goto_Home>", "General")
     vim.map("gn", "<NextTab>", "General")
     vim.map("gp", "<PrevTab>", "General")
     vim.map("g1", "<ActivateTab1>", "General")
@@ -101,6 +108,12 @@
     vim.map("g9", "<ActivateTab9>", "General")
     vim.map("g0", "<ActivateTab0>", "General")
     vim.BeforeActionDo("Gen_Before", "General")
+    
+    ;持久操持VIM操作的应用
+    c=HH Parent
+    vim.copy("General", c, c, f)
+    c=Photo_Lightweight_Viewer
+    vim.copy("General", c, c, f)
 return
 
 Gen_Before()
@@ -160,6 +173,14 @@ return
 <reload>:
     reload
 return
+<Suspend>:
+	Menu,tray,ToggleCheck,挂起 &S
+	Suspend
+	return
+<Pause>:
+	Menu,tray,ToggleCheck,暂停 &A
+	Pause
+	return
 <Exit>:
     ExitApp
 return
@@ -771,6 +792,13 @@ GetLastMinimizedWindow()
 }
 
 
+<Goto_Home>:
+    Send, ^{home}
+return
+
+<Goto_End>:
+    Send, ^{end}
+return
 ;================================== 功能代码 :由北风一叶提供
 ;下一个标签
 <NextTab>:
