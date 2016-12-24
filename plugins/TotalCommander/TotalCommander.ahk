@@ -150,13 +150,18 @@
     vim.Comment("<TC_CreateBlankFile>", "创建空文件")
     vim.Comment("<TC_CreateBlankFileNoExt>", "创建无扩展名空文件")
     vim.Comment("<TC_PasteFileEx>", "粘贴文件，如果光标下为目录则粘贴进该目录")
-
+    vim.Comment("<TC_SameFiles>","查找相同的文件")
+    vim.Comment("<TC_CmdHistory>","命令行历史记录")
+    vim.Comment("<TC_MkDirPasteFile>","把选中文件移动粘贴进新建文件夹")
+    
     GoSub, TCCOMMAND
 
     vim.SetWin("TCQuickSearch", "TQUICKSEARCH")
     vim.mode("normal", "TCQuickSearch")
     vim.map("J", "<Down>", "TCQuickSearch")
     vim.map("K", "<Up>", "TCQuickSearch")
+    vim.map("D", "<Down>", "TCQuickSearch")
+    vim.map("E", "<Up>", "TCQuickSearch")
     ;vim.map("<esc>", "<TC_NormalMode>", "TCQuickSearch")
 
     vim.mode("insert", "TTOTAL_CMD")
@@ -168,147 +173,7 @@
 
     vim.mode("normal", "TTOTAL_CMD")
 
-    ;复制/移动到右侧 f取file的意思 filecopy
-    vim.map("fc", "<cm_CopyOtherpanel>", "TTOTAL_CMD")
-    vim.map("fx", "<cm_MoveOnly>", "TTOTAL_CMD")
-
-    ;使用队列复制/移动到右侧 q-queue, fcq会影响对fc的使用，改用fqc/fqx的方式
-    vim.map("fqc", "<TC_CopyUseQueues>", "TTOTAL_CMD")
-    vim.map("fqx", "<TC_MoveUseQueues>", "TTOTAL_CMD")
-
-    ;ff复制到剪切板 fz剪切到剪切板 fv粘贴
-    vim.map("ff", "<cm_CopyToClipboard>", "TTOTAL_CMD")
-    vim.map("fz", "<cm_CutToClipboard>", "TTOTAL_CMD")
-    vim.map("fv", "<cm_PasteFromClipboard>", "TTOTAL_CMD")
-
-    ;fb复制到收藏夹某个目录，fd移动到收藏夹的某个目录
-    vim.map("fb", "<TC_CopyDirectoryHotlist>", "TTOTAL_CMD")
-    vim.map("fd", "<TC_MoveDirectoryHotlist>", "TTOTAL_CMD")
-    vim.map("fg", "<cm_CopySrcPathToClip>", "TTOTAL_CMD")
-    vim.map("ft", "<cm_SyncChangeDir>", "TTOTAL_CMD")
-    vim.map("F", "<TC_SearchMode>", "TTOTAL_CMD")
-    vim.map("gh", "<TC_GotoPreviousDirOther>", "TTOTAL_CMD")
-    vim.map("gl", "<TC_GotoNextDirOther>", "TTOTAL_CMD")
-    vim.map("Vh", "<cm_SwitchIgnoreList>", "TTOTAL_CMD")
-    vim.map("0", "<0>", "TTOTAL_CMD")
-    vim.map("1", "<1>", "TTOTAL_CMD")
-    vim.map("2", "<2>", "TTOTAL_CMD")
-    vim.map("3", "<3>", "TTOTAL_CMD")
-    vim.map("4", "<4>", "TTOTAL_CMD")
-    vim.map("5", "<5>", "TTOTAL_CMD")
-    vim.map("6", "<6>", "TTOTAL_CMD")
-    vim.map("7", "<7>", "TTOTAL_CMD")
-    vim.map("8", "<8>", "TTOTAL_CMD")
-    vim.map("9", "<9>", "TTOTAL_CMD")
-    vim.map("k", "<up>", "TTOTAL_CMD")
-    vim.map("K", "<TC_UpSelect>", "TTOTAL_CMD")
-    vim.map("j", "<down>", "TTOTAL_CMD")
-    vim.map("J", "<TC_DownSelect>", "TTOTAL_CMD")
-    vim.map("h", "<left>", "TTOTAL_CMD")
-    vim.map("H", "<cm_GotoPreviousDir>", "TTOTAL_CMD")
-    vim.map("l", "<right>", "TTOTAL_CMD")
-    vim.map("L", "<cm_GotoNextDir>", "TTOTAL_CMD")
-    vim.map("I", "<TC_CreateNewFile>", "TTOTAL_CMD")
-    vim.map("i", "<TC_InsertMode>", "TTOTAL_CMD")
-    vim.map("d", "<cm_DirectoryHotlist>", "TTOTAL_CMD")
-    vim.map("D", "<cm_OpenDesktop>", "TTOTAL_CMD")
-    vim.map("e", "<cm_ContextMenu>", "TTOTAL_CMD")
-    vim.map("E", "<cm_ExeCuteDOS>", "TTOTAL_CMD")
-    vim.map("n", "<TC_azHistory>", "TTOTAL_CMD")
-    vim.map("m", "<TC_Mark>", "TTOTAL_CMD")
-    vim.map("M", "<TC_Half>", "TTOTAL_CMD")
-    vim.map("'", "<TC_ListMark>", "TTOTAL_CMD")
-    vim.map("u", "<TC_GoToParentEx>", "TTOTAL_CMD")
-    vim.map("U", "<cm_GoToRoot>", "TTOTAL_CMD")
-    vim.map("o", "<cm_LeftOpenDrives>", "TTOTAL_CMD")
-    vim.map("O", "<cm_RightOpenDrives>", "TTOTAL_CMD")
-    vim.map("q", "<cm_SrcQuickView>", "TTOTAL_CMD")
-    vim.map("r", "<cm_RenameOnly>", "TTOTAL_CMD")
-    vim.map("R", "<cm_MultiRenameFiles>", "TTOTAL_CMD")
-    vim.map("x", "<cm_Delete>", "TTOTAL_CMD")
-    vim.map("X", "<TC_ForceDelete>", "TTOTAL_CMD")
-    vim.map("w", "<cm_List>", "TTOTAL_CMD")
-    vim.map("y", "<cm_CopyNamesToClip>", "TTOTAL_CMD")
-    vim.map("Y", "<cm_CopyFullNamesToClip>", "TTOTAL_CMD")
-    vim.map("P", "<cm_PackFiles>", "TTOTAL_CMD")
-    vim.map("p", "<cm_UnpackFiles>", "TTOTAL_CMD")
-    vim.map("t", "<cm_OpenNewTab>", "TTOTAL_CMD")
-    vim.map("T", "<cm_OpenNewTabBg>", "TTOTAL_CMD")
-    vim.map("/", "<cm_ShowQuickSearch>", "TTOTAL_CMD")
-    vim.map("?", "<cm_SearchFor>", "TTOTAL_CMD")
-    vim.map("[", "<cm_SelectCurrentName>", "TTOTAL_CMD")
-    vim.map("{", "<cm_UnselectCurrentName>", "TTOTAL_CMD")
-    vim.map("]", "<cm_SelectCurrentExtension>", "TTOTAL_CMD")
-    vim.map("}", "<cm_UnSelectCurrentExtension>", "TTOTAL_CMD")
-    vim.map("\", "<cm_ExchangeSelection>", "TTOTAL_CMD")
-    vim.map("|", "<cm_ClearAll>", "TTOTAL_CMD")
-    vim.map("-", "<cm_SwitchSeparateTree>", "TTOTAL_CMD")
-    vim.map("=", "<cm_MatchSrc>", "TTOTAL_CMD")
-    vim.map(",", "<cm_SrcThumbs>", "TTOTAL_CMD")
-    vim.map(";", "<cm_DirectoryHotlist>", "TTOTAL_CMD")
-    vim.map(":", "<cm_FocusCmdLine>", "TTOTAL_CMD")
-    vim.map("~", "<cm_SysInfo>", "TTOTAL_CMD")
-    vim.map("``", "<TC_ToggleShowInfo>", "TTOTAL_CMD")
-    vim.map("G", "<TC_LastLine>", "TTOTAL_CMD")
-    vim.map("ga", "<cm_CloseAllTabs>", "TTOTAL_CMD")
-    vim.map("gg", "<TC_GoToLine>", "TTOTAL_CMD")
-    vim.map("g$", "<TC_LastLine>", "TTOTAL_CMD")
-
-    ;与vim保持一致
-    vim.map("gt", "<cm_SwitchToNextTab>", "TTOTAL_CMD")
-    vim.map("gT", "<cm_SwitchToPreviousTab>", "TTOTAL_CMD")
-    vim.map("gc", "<cm_CloseCurrentTab>", "TTOTAL_CMD")
-    vim.map("gb", "<cm_OpenDirInNewTabOther>", "TTOTAL_CMD")
-    vim.map("ge", "<cm_Exchange>", "TTOTAL_CMD")
-    vim.map("gr", "<TC_ReOpenTab>", "TTOTAL_CMD")
-    vim.map("gw", "<cm_ExchangeWithTabs>", "TTOTAL_CMD")
-    vim.map("g1", "<cm_SrcActivateTab1>", "TTOTAL_CMD")
-    vim.map("g2", "<cm_SrcActivateTab2>", "TTOTAL_CMD")
-    vim.map("g3", "<cm_SrcActivateTab3>", "TTOTAL_CMD")
-    vim.map("g4", "<cm_SrcActivateTab4>", "TTOTAL_CMD")
-    vim.map("g5", "<cm_SrcActivateTab5>", "TTOTAL_CMD")
-    vim.map("g6", "<cm_SrcActivateTab6>", "TTOTAL_CMD")
-    vim.map("g7", "<cm_SrcActivateTab7>", "TTOTAL_CMD")
-    vim.map("g8", "<cm_SrcActivateTab8>", "TTOTAL_CMD")
-    vim.map("g9", "<cm_SrcActivateTab9>", "TTOTAL_CMD")
-    vim.map("g0", "<TC_GoLastTab>", "TTOTAL_CMD")
-    vim.map("sn", "<cm_SrcByName>", "TTOTAL_CMD")
-    vim.map("se", "<cm_SrcByExt>", "TTOTAL_CMD")
-    vim.map("ss", "<cm_SrcBySize>", "TTOTAL_CMD")
-    vim.map("sd", "<cm_SrcByDateTime>", "TTOTAL_CMD")
-    vim.map("sr", "<cm_SrcNegOrder>", "TTOTAL_CMD")
-    vim.map("s1", "<cm_SrcSortByCol1>", "TTOTAL_CMD")
-    vim.map("s2", "<cm_SrcSortByCol2>", "TTOTAL_CMD")
-    vim.map("s3", "<cm_SrcSortByCol3>", "TTOTAL_CMD")
-    vim.map("s4", "<cm_SrcSortByCol4>", "TTOTAL_CMD")
-    vim.map("s5", "<cm_SrcSortByCol5>", "TTOTAL_CMD")
-    vim.map("s6", "<cm_SrcSortByCol6>", "TTOTAL_CMD")
-    vim.map("s7", "<cm_SrcSortByCol7>", "TTOTAL_CMD")
-    vim.map("s8", "<cm_SrcSortByCol8>", "TTOTAL_CMD")
-    vim.map("s9", "<cm_SrcSortByCol9>", "TTOTAL_CMD")
-    vim.map("s0", "<cm_SrcUnsorted>", "TTOTAL_CMD")
-    vim.map("v", "<cm_SrcCustomViewMenu>", "TTOTAL_CMD")
-    vim.map("Vb", "<cm_VisButtonbar>", "TTOTAL_CMD")
-    vim.map("Vm", "<TC_ToggleMenu>", "TTOTAL_CMD")
-    vim.map("Vd", "<cm_VisDriveButtons>", "TTOTAL_CMD")
-    vim.map("Vo", "<cm_VisTwoDriveButtons>", "TTOTAL_CMD")
-    vim.map("Vr", "<cm_VisDriveCombo>", "TTOTAL_CMD")
-    vim.map("Vc", "<cm_VisDriveCombo>", "TTOTAL_CMD")
-    vim.map("Vt", "<cm_VisTabHeader>", "TTOTAL_CMD")
-    vim.map("Vs", "<cm_VisStatusbar>", "TTOTAL_CMD")
-    vim.map("Vn", "<cm_VisCmdLine>", "TTOTAL_CMD")
-    vim.map("Vf", "<cm_VisKeyButtons>", "TTOTAL_CMD")
-    vim.map("Vw", "<cm_VisDirTabs>", "TTOTAL_CMD")
-    vim.map("Ve", "<cm_CommandBrowser>", "TTOTAL_CMD")
-    vim.map("zz", "<TC_Toggle_50_100Percent>", "TTOTAL_CMD")
-    vim.map("zh", "<TC_Toggle_50_100Percent_V>", "TTOTAL_CMD")
-    vim.map("zi", "<TC_WinMaxLeft>", "TTOTAL_CMD")
-    vim.map("zo", "<TC_WinMaxRight>", "TTOTAL_CMD")
-    vim.map("zt", "<TC_AlwayOnTop>", "TTOTAL_CMD")
-    vim.map("zn", "<cm_Minimize>", "TTOTAL_CMD")
-    vim.map("zm", "<cm_Maximize>", "TTOTAL_CMD")
-    vim.map("zr", "<cm_Restore>", "TTOTAL_CMD")
-    vim.map("zv", "<cm_VerticalPanels>", "TTOTAL_CMD")
+    #include *i %A_ScriptDir%\plugins\TotalCommander\TCvim.ahk
 
     vim.BeforeActionDo("TC_BeforeActionDo", "TTOTAL_CMD")
 
@@ -1381,10 +1246,10 @@ gooncopy:
 return
 
 
-;<TC_CopyUseQueues>: >>无需确认，使用队列拷贝文件至另一窗口{{{2
+;<TC_CopyUseQueues>: >>无需确认，直接拷贝文件至另一窗口{{{2
 <TC_CopyUseQueues>:
     Send {F5}
-    Send {F2}
+    Send !{P}
 return
 
 ;<TC_MoveUseQueues>: >>无需确认，使用队列移动文件至另一窗口{{{2
@@ -1443,6 +1308,23 @@ return
     Send {Tab}
     SendPos(571)
     Send {Tab}
+return
+
+;<TC_SameFiles>: >>查找相同的文件
+<TC_SameFiles>:
+	Send ^{f}
+	Send ^{Tab}
+	Send {p}
+	Sleep 200
+	Send {Tab}
+	Send {Space}
+	Send {Tab 2}
+	Send {Space}
+	Sleep 200
+	Send {s}
+Return
+
+<Totalcomander_GUI>:
 return
 
 Totalcomander_select_tc:
@@ -1618,7 +1500,9 @@ return
     Clipboard :=
     SendPos(2018)
     ClipWait
-    filecopy, %Clipboard%, %Clipboard%.bak
+    SplitPath,Clipboard,FCname,,FCext
+    StringReplace,FCnew,Clipboard,.%FCext%,_bak.%FCext%,All
+    filecopy,%Clipboard%,%FCnew%
 Return
 
 ;<TC_FileMoveForBak>: >>将当前光标下的文件重命名为备份
@@ -1886,8 +1770,20 @@ TC_Run(cmd)
     OldClipboard =
 return
 
-; ADD HERE
+; 把选中文件移动粘贴进新建文件夹
+<TC_MkDirPasteFile>:
+    SendPos(2007)   ;cm_CutToClipboard
+    SendPos(907)    ;cm_MkDir
+    WinWaitActive,ahk_class TCOMBOINPUT
+    WinWaitClose
+    WinWaitActive,ahk_class #32770,,0.1
+    if ErrorLevel {
+        SendPos(1001)   ;cm_Return
+        SendPos(2009)   ;cm_PasteFromClipboard
+    }
+return
 
+; ADD HERE
 
 
 ; TC自带命令 {{{1
@@ -2431,7 +2327,7 @@ return
 return
 ;<cm_SrcThumbs>: >>来源窗口: 缩略图{{{2
 <cm_SrcThumbs>:
-    SendPos(269    )
+    SendPos(269)
 return
 ;<cm_SrcCustomViewMenu>: >>来源窗口: 自定义视图菜单{{{2
 <cm_SrcCustomViewMenu>:
@@ -3264,6 +3160,10 @@ return
     Vim_HotkeyCount := 0
     SendPos(572)
 return
+;<TC_CmdHistory>: >>命令行历史记录{{{2
+<TC_CmdHistory>:
+	Send,!{F8}
+Return
 ;<cm_GotoPreviousLocalDir>: >>后退(非 FTP){{{2
 <cm_GotoPreviousLocalDir>:
     SendPos(573)
