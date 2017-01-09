@@ -120,7 +120,7 @@ Class __vim
         this.ExcludeWinList := []
         this.winGlobal  := new __win
         this.ErrorCode  := 0
-        tihs.ActionFromPluginName := ""
+        this.ActionFromPluginName := ""
         this.LastFoundWin := ""
     }
     
